@@ -1,12 +1,23 @@
-const BASE_URL = "http://localhost/finance-tracker-web-app/backend";
-export const loginUser = async (data) => {
-  const res = await fetch(`${BASE_URL}/auth/login.php`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+const BASE_URL = "http://xenofin.gt.tc"; 
 
-  return res.json();
+export const loginUser = async (data) => {
+  try {
+    const res = await fetch(`${BASE_URL}/auth/login.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    // Response check karein
+    if (!res.ok) {
+      throw new Error("Server error!");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("API Error:", error);
+    return { status: "error", message: "Connection failed" };
+  }
 };
