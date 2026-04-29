@@ -16,8 +16,9 @@ function Signup() {
   const handleSignup = async () => {
     setErrors({});
 
+    // ✅ localhost link change kar ke live domain set kar diya hai
     const res = await fetch(
-      "http://localhost/finance-tracker-web-app/backend/auth/signup.php",
+      "http://xenofin.gt.tc/auth/signup.php",
       {
         method: "POST",
         headers: {
